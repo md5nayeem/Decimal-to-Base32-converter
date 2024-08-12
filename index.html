@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Decimal to Base 32 Converter</title>
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
     <style>
+        /* Reset default styles */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -20,34 +21,30 @@
 
         body {
             width: 100%;
-            height: 100vh !important;
-            overflow: hidden !important;
-            background: url(bg.jpg);
-
+            height: 100vh;
+            overflow: hidden;
             background-size: 100vw 100vh;
             background-repeat: no-repeat;
             display: flex;
             justify-content: center;
             align-items: center;
+            background-image: linear-gradient(to right, #8800ff, #c800ff, #a3469e, #be54a1, #d663a5);
         }
 
-        .container {
+        .converter-container {
             width: 28rem;
             height: 28rem;
-
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-
-            background: #b6c2ff5d;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            background: #ffffff;
             backdrop-filter: blur(0px);
             -webkit-backdrop-filter: blur(0px);
             border-radius: 10px;
         }
 
-        .lottie {
+        .lottie-animation {
             margin-top: -3rem;
             height: 8rem;
         }
@@ -56,22 +53,22 @@
             font-size: 1.5rem;
             font-weight: bold;
             margin-bottom: 0.5rem;
-            color: rgb(85, 85, 85);
+            color: #555555;
         }
 
         input {
             padding: 1rem;
-            border-radius: 0.5rem !important;
+            border-radius: 0.5rem;
             border: none;
             outline: none;
             box-shadow: 0.2rem 0.2rem 0.9rem 0rem rgba(85, 85, 85, 0.2) inset;
             margin-top: -1.5rem;
             background-color: #b6c2ff5d;
-            color: rgb(85, 85, 85);
+            color: #555555;
         }
 
         input::placeholder {
-            color: rgb(85, 85, 85) !important;
+            color: #555555;
             font-size: 0.89rem;
         }
 
@@ -84,13 +81,12 @@
             outline: none;
             letter-spacing: 0.1rem;
             background-color: #0275d8;
-            color: white;
+            color: #ffffff;
             font-weight: bold;
-
         }
 
         button:hover {
-            cursor: pointer !important;
+            cursor: pointer;
             transform: scale(0.97);
         }
 
@@ -99,7 +95,7 @@
             border: none;
             outline: none;
             border-radius: 0.5rem;
-            color: rgb(85, 85, 85);
+            color: #555555;
             background: #b6c2ff5d;
             box-shadow: 0.2rem 0.2rem 0.9rem 0rem rgba(85, 85, 85, 0.2) inset;
             width: 90%;
@@ -108,7 +104,7 @@
         }
 
         textarea::placeholder {
-            color: rgb(85, 85, 85) !important;
+            color: #555555;
             position: absolute;
             top: 42%;
             transform: translateY(-50%);
@@ -120,25 +116,25 @@
 
 <body>
 
-    <div class="container">
-        <div class="lottie">
+    <div class="converter-container">
+        <div class="lottie-animation">
             <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
             <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_FVqg63.json" background="transparent"
                 speed="1" loop autoplay></lottie-player>
         </div>
-        <label for="decimal">Decimal => Base 32</label><br>
-        <input type="number" id="decimal" placeholder="Enter Decimal Number (max:17 digit)" autofocus autocomplete="off"><br>
-        <button type="button" id="btn">CONVERT</button>
-        <textarea id="txtarea" placeholder="NOTHING TO SHOW"></textarea>
+        <label for="decimal-input">Decimal Number => Base 32</label><br>
+        <input type="number" id="decimal-input" placeholder="Enter Decimal Number (max:17 digit)" autofocus autocomplete="off"><br>
+        <button type="button" id="convert-button">CONVERT</button>
+        <textarea id="result-textarea" placeholder="Nothing to show" readonly></textarea>
     </div>
 
     <script>
-        document.getElementById("btn").onclick = function () {
-            var x = document.getElementById("decimal").value;
-            var y = parseInt(x);
-            var z = y.toString(32);
+        document.getElementById("convert-button").onclick = function () {
+            var decimalInput = document.getElementById("decimal-input").value;
+            var decimalNumber = parseInt(decimalInput);
+            var base32Result = decimalNumber.toString(32);
 
-            document.getElementById("txtarea").innerHTML = `${z}`;
+            document.getElementById("result-textarea").innerHTML = `${base32Result}`;
         }
     </script>
 </body>
